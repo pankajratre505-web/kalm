@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalam – headlines, topics and guides for poets and storytellers</title>
+<meta name="description" content="Stuck on what to write? Get headlines, topics, step-by-step writing guides and opening lines for poems, stories, essays and songs.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&family=DM+Sans:wght@400;500&display=swap">
+<style>
+:root{--bg:#0f1a1c;--card:#172629;--ink:#eef3ee;--muted:#9db2b0;--accent:#f2b45a;--on:#1a1206;--line:rgba(255,255,255,.14);color-scheme:dark}
+@media(prefers-color-scheme:light){:root{--bg:#f3f6f4;--card:#fff;--ink:#14211f;--muted:#51655f;--accent:#b9650a;--on:#fff;--line:rgba(0,0,0,.15);color-scheme:light}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.05rem/1.6 "DM Sans",system-ui,sans-serif}
+main{max-width:720px;margin:0 auto;padding:2.2rem 1.2rem 4rem}
+h1,h2{font-family:Fraunces,Georgia,serif;font-weight:600}
+h1{font-size:clamp(3rem,12vw,4.6rem);line-height:1;margin:.2rem 0 .6rem;letter-spacing:-.02em}
+h1::after{content:".";color:var(--accent)}
+h2{font-size:1.5rem;margin:0 0 .8rem}
+.lede{color:var(--muted);margin:0 0 1.6rem;max-width:34em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:1.3rem}
+label,.lab{display:block;font-weight:500;margin:0 0 .4rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.1rem}
+.chip,.ghost{font:inherit;color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:999px;padding:.4rem 1rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on)}
+textarea,input{width:100%;font:inherit;color:var(--ink);background:transparent;border:1.5px solid var(--line);border-radius:14px;padding:.7rem .9rem}
+textarea{resize:vertical;min-height:7rem}
+.go{font:600 1.05rem "DM Sans",system-ui,sans-serif;width:100%;background:var(--accent);color:var(--on);border:0;border-radius:14px;padding:.9rem;cursor:pointer;margin-top:1rem}
+.or{display:flex;gap:.6rem;flex-wrap:wrap;margin-top:.8rem}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.err{color:#ff8f8f;margin:.6rem 0 0;min-height:1.4em}
+section{margin-top:2.2rem}
+.hint{color:var(--muted);font-size:.9rem;margin:-.4rem 0 .8rem}
+.item{display:block;width:100%;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.8rem 1rem;margin-bottom:.6rem;cursor:pointer}
+.item b{display:block;font-family:Fraunces,Georgia,serif;font-style:italic;font-weight:500;font-size:1.25rem;line-height:1.35}
+.item span{color:var(--muted);font-size:.95rem}
+ol{margin:0;padding-left:1.4rem}
+ol li{margin-bottom:.7rem;padding-left:.3rem}
+.cmi{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.8rem 1rem;margin-top:.7rem}
+.cmi p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.cmi small{color:var(--accent)}
+.toast{position:fixed;left:50%;bottom:1.2rem;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:.5rem 1.1rem;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s}
+.toast.on{opacity:1}
+footer{margin-top:3rem;color:var(--muted);font-size:.9rem}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Kalam</h1>
+  <p class="lede">Don’t know what to write, or how to start? Tell us your idea or feeling and get headlines, topics, a step-by-step guide and opening lines. No sign-up needed.</p>
+</header>
+
+<div class="card">
+  <span class="lab" id="tl">What are you writing?</span>
+  <div class="chips" id="types" role="group" aria-labelledby="tl"></div>
+  <span class="lab" id="ml">Mood</span>
+  <div class="chips" id="moods" role="group" aria-labelledby="ml"></div>
+  <label for="idea">Your idea or thoughts (a few words are enough)</label>
+  <textarea id="idea" maxlength="300" placeholder="For example: mother waiting for a train, first rain, old friend"></textarea>
+  <button class="go" id="go" type="button">Give me ideas</button>
+  <div class="or"><button class="ghost" id="rnd" type="button">Surprise me with a topic</button></div>
+  <p class="err" id="err" role="alert"></p>
+</div>
+
+<div id="out" hidden>
+  <section><h2>Headlines</h2><p class="hint">Tap one to copy it.</p><div id="heads"></div></section>
+  <section><h2>Topics and angles</h2><div id="topics"></div></section>
+  <section><h2 id="sh">How to write it</h2><ol id="steps"></ol></section>
+  <section><h2>Ways to begin</h2><p class="hint">Opening lines to spark your own. Tap to copy.</p><div id="opens"></div></section>
+  <button class="ghost" id="more" type="button" style="margin-top:1.5rem">Show different ideas</button>
+</div>
+
+<section id="cm">
+  <h2>Your opinion</h2>
+  <p class="hint">Tell us what you think of Kalam or what helped you write.</p>
+  <label for="cmt">Write a comment</label>
+  <textarea id="cmt" maxlength="600" placeholder="Your opinion…" style="min-height:5rem"></textarea>
+  <button class="go" id="cmgo" type="button">Post comment</button>
+  <p class="err" id="cmerr" role="alert"></p>
+  <div id="cmlist"></div>
+</section>
+
+<footer>Kalam is a free writing helper. Ideas are suggestions to spark your own words.</footer>
+</main>
+<div class="toast" id="toast" role="status">Copied</div>
+
+<script>
+(function(){
+  var $=function(i){return document.getElementById(i)};
+  // Optional: paste a Google Form or Formspree link here so every opinion reaches you.
+  var FEEDBACK_URL="";
+
+  var TYPES=["Poem","Short story","Essay","Song lyrics"],MOODS=["Any","Hopeful","Sad","Romantic","Funny","Calm","Dark"];
+  var type=TYPES[0],mood="Any";
+  function chips(host,arr,get,set){arr.forEach(function(t,i){
+    var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=t;b.setAttribute("aria-pressed",i===0?"true":"false");
+    b.onclick=function(){set(t);Array.prototype.forEach.call(host.children,function(c){c.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed","true")};
+    host.appendChild(b)})}
+  chips($("types"),TYPES,0,function(t){type=t});
+  chips($("moods"),MOODS,0,function(t){mood=t});
+
+  var H={
+    Hopeful:["The Morning After {w}","Where {w} Begins Again","A Light Called {w}","What {w} Taught the Sun","Still Rising, Still {w}","One More Day of {w}"],
+    Sad:["The Silence of {w}","What {w} Left Behind","Letters to {w}","When {w} Went Quiet","The Last Page of {w}","Empty Chairs and {w}"],
+    Romantic:["If {w} Could Hold My Hand","Your Name Is Written in {w}","{w} and Two Cups of Chai","Come Back to {w}","The Way {w} Looks at You","Love, Written in {w}"],
+    Funny:["My Complicated Relationship with {w}","{w}: A Disaster in Three Acts","Why {w} Never Texts Back","I Blame {w}","The Great {w} Misunderstanding","Breaking News: {w} Strikes Again"],
+    Calm:["Slow Hours of {w}","A Quiet Afternoon with {w}","Breathing in {w}","The Soft Edge of {w}","Sitting Beside {w}","Everything Settles Around {w}"],
+    Dark:["The Shadow Inside {w}","What {w} Never Told Us","Midnight Belongs to {w}","The Locked Door of {w}","Ashes of {w}","Beneath the Floor of {w}"]
+  };
+  var T={
+    Hopeful:["Write about {w} at the moment things begin to turn better.","Tell {w} from the view of someone who refuses to give up.","Link {w} to a small, ordinary kindness.","Imagine {w} ten years from now, and what changed.","Let {w} be the last thing that goes wrong before it goes right."],
+    Sad:["Write about {w} as something you can no longer reach.","Focus on one object that holds the memory of {w}.","Describe {w} through what is missing from the room.","Speak to {w} as if it could still hear you.","Show {w} through a single quiet, ordinary day."],
+    Romantic:["Describe {w} through the eyes of someone secretly in love.","Write {w} as a letter that is never sent.","Tell how {w} brought two strangers together.","Let {w} be the place where a promise was made.","Show love through small habits connected to {w}."],
+    Funny:["Exaggerate {w} until it becomes absurd.","Write {w} as a complaint to the universe.","Give {w} a personality and let it argue with you.","Tell the worst possible plan involving {w}.","Describe {w} the way a very serious news reporter would."],
+    Calm:["Describe {w} using only what you can see, hear and smell.","Write {w} as a slow walk with no destination.","Let {w} be a pause between two busy days.","Find one detail of {w} that most people miss.","Write {w} as a breath in and a breath out."],
+    Dark:["Show {w} as something that looks safe but isn’t.","Tell {w} from the viewpoint of a witness who stayed silent.","Let {w} hide a secret the narrator slowly reveals.","Describe {w} at night, when everything changes.","Write {w} as a warning that nobody listened to."]
+  };
+  var O={
+    Hopeful:["Somewhere inside {w}, a window was already opening.","They said {w} was the end, but I could smell morning.","Today, {w} feels a little lighter."],
+    Sad:["I still set a place for {w}, though no one comes.","Nothing prepared me for how quiet {w} would be.","The last time I saw {w}, I didn’t know it was the last."],
+    Romantic:["I never believed in {w} until you walked in.","If {w} had a voice, it would say your name.","Every road I take somehow leads back to {w} and you."],
+    Funny:["Let me begin by saying {w} was absolutely not my fault.","Nobody warned me that {w} would be this dramatic.","It all started when I trusted {w}. Big mistake."],
+    Calm:["The evening folds itself around {w}, and nothing needs to happen.","Listen. Even {w} has stopped to rest.","Soft light, slow tea, and {w} beside the window."],
+    Dark:["Nobody talks about {w} after midnight.","The first thing I noticed about {w} was the silence.","Some doors close behind you. {w} was one of them."]
+  };
+  var S={
+    "Poem":["Pick one feeling and write it in a single sentence. Everything in the poem should serve that sentence.","Choose three images you can see or touch (not abstract words like “sadness”). Use them instead of explaining.","Write your first draft without stopping or fixing anything. Aim for 8 to 12 lines.","Decide a shape: rhyming couplets, free verse, or a short ghazal-style refrain. Stay with it.","Read it aloud and cut every word that does not carry the feeling.","End with a turn: a small surprise, an echo of the first line, or a quiet open question."],
+    "Short story":["Start with one character who wants something specific and cannot easily get it.","Pick a place and a time, and name three small details only someone there would notice.","Begin in the middle of a moment, not with background. Explain later, if at all.","Build in three steps: something goes wrong, it gets worse, then the character must choose.","Use dialogue to show feelings instead of describing them.","End on an image or a decision. A good ending changes something, even if it is small."],
+    "Essay":["Write your main point in one sentence. If you cannot, keep thinking before you write.","Open with a real moment, a question, or a surprising fact, not a definition.","Give each paragraph one idea and one example from your own life or what you have seen.","Mention the opposite view once, and answer it honestly.","Keep sentences short where the idea is hard.","Close by returning to your opening moment and showing what changed."],
+    "Song lyrics":["Pick a feeling and the one line you would want people to remember. That becomes the chorus.","Write the chorus first: short, simple, easy to sing, repeated.","Write verse one as the situation and verse two as what changed or got worse.","Keep a steady beat: count syllables and read each line out loud to a tapping rhythm.","Add a bridge: a different angle or a twist before the last chorus.","Sing it to yourself and replace any line that is hard to say."]
+  };
+  var R=["a letter that arrives twenty years late","the last bus home","a grandmother’s kitchen","the first rain","a locked diary","a stranger on the train","a childhood friend you lost touch with","a small town at midnight","an unfinished painting","the smell of old books","a lighthouse keeper","an empty school after the bell","a promise made on a rooftop","the sound of a distant wedding","a refugee’s suitcase","a mirror that remembers","chai at 4 a.m.","a river that changed its path","a phone that never rings","the day the power went out"];
+  var STOP=",a,an,the,of,and,or,to,in,on,at,for,is,are,was,were,i,my,me,we,you,your,it,its,about,with,that,this,about,write,story,poem,song,";
+  var last={};
+
+  function pick(a,n){var c=a.slice(),o=[];while(o.length<n&&c.length){o.push(c.splice(Math.floor(Math.random()*c.length),1)[0])}return o}
+  function keyword(s){
+    var w=s.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu," ").split(/\s+/).filter(function(x){return x&&STOP.indexOf(","+x+",")<0});
+    if(!w.length)return null;var k=w.slice(0,2).join(" ");return k.charAt(0).toUpperCase()+k.slice(1);
+  }
+  function toast(m){var t=$("toast");t.textContent=m||"Copied";t.classList.add("on");setTimeout(function(){t.classList.remove("on")},1300)}
+  function copy(txt){try{navigator.clipboard.writeText(txt).then(function(){toast()},function(){})}catch(e){}}
+  function item(host,main,sub){
+    var b=document.createElement("button");b.type="button";b.className="item";
+    var m=document.createElement("b");m.textContent=main;b.appendChild(m);
+    if(sub){var s=document.createElement("span");s.textContent=sub;b.appendChild(s)}
+    b.onclick=function(){copy(main)};host.appendChild(b);
+  }
+  function pool(map){
+    if(mood!=="Any")return map[mood];
+    var all=[];Object.keys(map).forEach(function(k){all=all.concat(map[k])});return all;
+  }
+  function fill(s,w){return s.replace(/\{w\}/g,w)}
+
+  function render(w){
+    ["heads","topics","steps","opens"].forEach(function(i){$(i).textContent=""});
+    pick(pool(H),6).forEach(function(h){item($("heads"),fill(h,w))});
+    pick(pool(T),5).forEach(function(t){item($("topics"),fill(t,w.toLowerCase()))});
+    S[type].forEach(function(s){var li=document.createElement("li");li.textContent=s;$("steps").appendChild(li)});
+    $("sh").textContent="How to write your "+type.toLowerCase();
+    pick(pool(O),3).forEach(function(o){item($("opens"),fill(o,w.toLowerCase()))});
+    $("out").hidden=false;$("out").scrollIntoView({behavior:"smooth"});
+  }
+  function run(){
+    var idea=$("idea").value.trim();$("err").textContent="";
+    if(idea.length<3){$("err").textContent="Write a few words about your idea first, or tap “Surprise me”.";return}
+    last.w=keyword(idea)||"This Feeling";render(last.w);
+  }
+  $("go").onclick=run;
+  $("more").onclick=function(){render(last.w||"This Feeling")};
+  $("rnd").onclick=function(){var r=R[Math.floor(Math.random()*R.length)];$("idea").value=r;last.w=keyword(r)||r;$("err").textContent="";render(last.w)};
+
+  // Comments: saved on this device. If FEEDBACK_URL is set, a link to send opinions to the site owner is shown.
+  var KEY="kalam_comments",list=[];
+  try{list=JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){list=[]}
+  function showC(){
+    var h=$("cmlist");h.textContent="";
+    list.slice().reverse().forEach(function(c){
+      var d=document.createElement("div");d.className="cmi";
+      var s=document.createElement("small");s.textContent=c.d;var p=document.createElement("p");p.textContent=c.t;
+      d.appendChild(s);d.appendChild(p);h.appendChild(d);
+    });
+  }
+  showC();
+  if(FEEDBACK_URL){var a=document.createElement("a");a.href=FEEDBACK_URL;a.textContent="Send your opinion to the Kalam team";a.style.cssText="display:inline-block;margin-top:.8rem;color:var(--accent)";$("cmgo").after(a)}
+  $("cmgo").onclick=function(){
+    var v=$("cmt").value.trim();$("cmerr").textContent="";
+    if(v.length<2){$("cmerr").textContent="Write a few words first.";return}
+    list.push({t:v,d:new Date().toLocaleDateString()});
+    try{localStorage.setItem(KEY,JSON.stringify(list))}catch(e){}
+    $("cmt").value="";showC();toast("Comment posted");
+  };
+})();
+</script>
+</body>
+</html>
